@@ -1,0 +1,11 @@
+.Filter-key select {
+  width: 80%;
+  display: inline-block;
+}
+
+.Filter-key button {
+  width: 15%;
+  margin-left: 5%;
+  height: 30px;
+  margin-bottom: 3px;
+}

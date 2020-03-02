@@ -1,0 +1,28 @@
+.Table {
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 1em;
+}
+
+.Table th {
+  background: #eee;
+}
+
+.Table,
+.Table th,
+.Table td {
+  border: 1px solid #dddddd;
+}
+
+.Table th {
+  height: 30px;
+}
+
+.Table th,
+.Table td {
+  padding: 5px;
+}
+
+.rsdt.rsdt-container {
+  overflow: visible !important;
+}

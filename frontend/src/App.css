@@ -1,0 +1,11 @@
+.App {
+  height: 100%;
+}
+
+.Graph-container {
+  height: calc(100% - 50px);
+  width: calc(100% - 300px);
+  margin-left: 300px;
+  padding: 15px;
+  overflow: auto;
+}

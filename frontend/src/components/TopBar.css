@@ -1,0 +1,15 @@
+.Top-bar {
+  height: 50px;
+  padding: 10px;
+  line-height: 30px;
+  background: var(--color1);
+  color: var(--accent2);
+  font-size: 1.4em;
+  border-bottom: 2px solid;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.Loader {
+  float: right;
+}

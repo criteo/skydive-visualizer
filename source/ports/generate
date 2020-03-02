@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+
+import codecs
+from contextlib import closing
+import csv
+import requests
+
+url = "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.csv"
+
+print('package ports')
+print('')
+print('var ports = map[string]string{')
+
+
+with closing(requests.get(url, stream=True)) as r:
+    reader = csv.reader(codecs.iterdecode(r.iter_lines(), 'utf-8'))
+    next(reader)
+
+    done = set()
+    for row in reader:
+        name = row[0]
+        port = row[1]
+
+        if not name or not port:
+            continue
+
+        if port in done:
+            continue
+
+        done.add(port)
+
+        print(f"\"{port}\": \"{name}\",")
+
+print('}')
