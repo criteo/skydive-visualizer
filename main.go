@@ -29,13 +29,17 @@ func main() {
 	src = skydiveSource.NewSkydive(skydiveClient)
 	src = dns.New(src)
 	src = ports.New(src)
-	src, err = ipam.New(src, cfg.IPAM)
-	if err != nil {
-		log.Fatal(err)
+	if cfg.IPAM != nil {
+		src, err = ipam.New(src, cfg.IPAM)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
-	src, err = chef.New(src, cfg.Chef)
-	if err != nil {
-		log.Fatal(err)
+	if cfg.Chef != nil {
+		src, err = chef.New(src, cfg.Chef)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 
 	src = source.NewPeriodic(src, 10*time.Minute)
