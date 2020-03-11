@@ -47,7 +47,14 @@ func GetConfig(path string) (Config, error) {
 }
 
 func doEnv(in interface{}) interface{} {
-	s := reflect.ValueOf(in).Elem()
+	s := reflect.ValueOf(in)
+	if s.Kind() == reflect.Ptr {
+		if s.IsNil() {
+			return in
+		}
+		s = s.Elem()
+	}
+
 	t := s.Type()
 
 	for i := 0; i < s.NumField(); i++ {
