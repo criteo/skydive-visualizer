@@ -1,0 +1,20 @@
+language: go
+
+services:
+  - docker
+
+script:
+  - docker build -t skydive-visualizer -f Dockerfile.build .
+  - container=$(docker create skydive-visualizer)
+  - docker cp $container:/app/skydive-visualizer ./skydive-visualizer
+  - ls -lh ./skydive-visualizer
+
+deploy:
+  provider: releases
+  api_key:
+    secure: uXJBQIxVslJCmU0VwujR9c1UaFe94VIs6pYkiHdtO/a2b7z6TL20eSVdOsQg3q5+XWhT0Ah+NlTiSr+S1B2EFDaiKiI9e+hDRH8JtTibuAShPXgv1Opr4fbW91KMFkWRBMlVJ0SdFI+YrB3XFQeuBBg2tTlj68GQumlV5VEwUDJVF0HzA8qbUzERmMGhuNOT2JsbAj3whGkJ1XrxfUF6RZ2qDmDtyaVURh4LAodp7QRCTxyPjmw7SyPL8SpxbxQkNW+O0PW2l8ZlR86Oth/FmqjM8szS+h4XAcHI7N7EjRaqfGb5bKxM0x6wr/VAwN4mrH4LjDCE7HQMQRAUxH/4/CHw4jkJ7i26QL/XiqEDZzbz+1Y2m83P30Iw754WemmtFfFtsTA1cO3sneeZ3D4MhZNETTmAQjZdmYw/9nO1vlvCeMVF5dILDyeO29ozw1eJ9bRfzFBHou15XkMBizYGYceVfgCrj7hC4yo3CZh5nlgoyXs2L6rDiT/EnPvQJmgfXyzMW4vVS3SHAzSKgeIyUFJfySrYYzfR6aptL3FokypvFXf4Jr3uFhmNJwTTYu2Jnsi/JiAVt6kVEFU+9l9YCDOXveu+FQhWSNG6HYa9nxH8D+2BkFw45Y1S5OnK8lY8x436k+J480YcyYckgar5cMRTLp5PaepSsAlVJ5cV8GM=
+  skip_cleanup: true
+  file: skydive-visualizer
+  on:
+    repo: criteo/skydive-visualizer
+    tags: true
