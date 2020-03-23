@@ -1,9 +1,13 @@
 language: go
 
+go:
+  - 1.14.x
+
 services:
   - docker
 
 script:
+  - go test ./...
   - docker build -t skydive-visualizer -f Dockerfile.build .
   - container=$(docker create skydive-visualizer)
   - docker cp $container:/app/skydive-visualizer ./skydive-visualizer
