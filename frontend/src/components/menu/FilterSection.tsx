@@ -6,6 +6,7 @@ import "./FilterSection.css";
 type FiltersSectionProps = {
   attributes: Array<Attribute>;
   filters: Filters;
+  disabled: boolean;
   onChange: (f: Filters) => void;
 };
 
@@ -81,7 +82,11 @@ export default class FiltersSection extends Component<FiltersSectionProps, {}> {
     return (
       <div className="Section">
         <div className="Title">
-          <button className="Add-button" onClick={this.add}>
+          <button
+            className="Add-button"
+            onClick={this.add}
+            disabled={this.props.disabled}
+          >
             Add
           </button>
           Filter
