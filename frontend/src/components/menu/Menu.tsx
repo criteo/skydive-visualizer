@@ -82,7 +82,7 @@ export default class Menu extends Component<MenuProps, MenuState> {
 
   go() {
     let params = this.state.graphParams;
-    if (params.volume === 0) {
+    if (params.volume === 0 && this.props.attributes.length > 0) {
       params.volume = this.props.attributes.filter(
         e => e.type === "edge"
       )[0].id;
@@ -92,6 +92,8 @@ export default class Menu extends Component<MenuProps, MenuState> {
   }
 
   render() {
+    const disabled = !this.props.attributes.length;
+
     var multiDim = (
       <>
         <ul id="dimensions-src">
@@ -161,6 +163,7 @@ export default class Menu extends Component<MenuProps, MenuState> {
           <div className="Title">Graph type</div>
           <select
             id="graph-type"
+            disabled={disabled}
             value={this.state.graphType}
             onChange={e => this.setState({ graphType: e.target.value })}
           >
@@ -173,6 +176,7 @@ export default class Menu extends Component<MenuProps, MenuState> {
           <div className="Title">Volume</div>
           <select
             id="volume"
+            disabled={disabled}
             onChange={this.onVolumeChanged}
             value={this.state.graphParams.volume}
           >
@@ -195,6 +199,7 @@ export default class Menu extends Component<MenuProps, MenuState> {
         <FiltersSection
           attributes={this.props.attributes}
           filters={this.state.graphParams.filters}
+          disabled={disabled}
           onChange={this.onFiltersChanged}
         />
 
@@ -202,13 +207,14 @@ export default class Menu extends Component<MenuProps, MenuState> {
           <div className="Title">Max values</div>
           <input
             type="number"
+            disabled={disabled}
             value={this.state.graphParams.maxValues}
             onChange={this.onMaxValuesChanged}
           />
         </div>
 
         <div className="Section">
-          <button className="Go" onClick={this.go}>
+          <button className="Go" onClick={this.go} disabled={disabled}>
             Go
           </button>
         </div>

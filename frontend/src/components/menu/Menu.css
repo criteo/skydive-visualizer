@@ -38,6 +38,8 @@
   border: 0;
   color: var(--color2);
   background: white;
+  border-radius: 3px;
+  border: 1px solid var(--color1);
 }
 
 .Menu select {
@@ -64,9 +66,11 @@
   border: 1px solid var(--color1);
 }
 
-.Menu button {
-  border-radius: 3px;
-  border: 1px solid var(--color1);
+.Menu button:disabled,
+.Menu select:disabled,
+.Menu input:disabled[type="text"],
+.Menu input:disabled[type="number"] {
+  background-color: #ddd;
 }
 
 .Menu .Filter-control {
