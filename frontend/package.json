@@ -19,7 +19,7 @@
     "react-d3-graph": "^2.4.0",
     "react-dom": "^16.13.0",
     "react-loader-spinner": "^3.1.5",
-    "react-scripts": "3.4.0",
+    "react-scripts": "5.0.1",
     "react-smart-data-table": "^0.7.3",
     "typescript": "~3.7.2"
   },
